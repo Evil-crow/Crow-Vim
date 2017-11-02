@@ -12,29 +12,91 @@
 " 
 " Author :EvilCrow
 " Source :http://github.com/evil-crow/Crow-vim
+" Last ,dedicate this vimrc for XiyouLinuxGroup
+" Thanks for you very much!
+"
+"***************************************General Settings************************************************************
 
-"General Settings
-let mapleader = ","                     "设置mapleader
-filetype on                             "检测到的不同文件类型
-filetype plugin on                      "根据检测到的不同文件类型自动加载ftplugin
-set noerrorbells                        "让Vim不再DiDiDi
+let mapleader = ","               "set up the mapleader
+filetype on                       "detect the different filetype
+filetype plugin on                "auto loading the ftplugin by filetype
+filetype indent on                "auto loading the indent by filetype
+syntax enable                     "open the default code highlight
+syntax on                         "open the syntax switch
+set showtabline=2                 "always show the tab 
+
+set t_Co=256                      "provide 256 colors support for some colorscheme
+set noerrorbells                  "Let Vim do not DiDiDi anymore
+set novisualbell                  "Let vim be quiet in visual mode
+set history=500                   "set Vim's history 500
+set autoread                      "autoread when the file has been modified
+set shortmess=atI                 "do not display the Uganda message
+set textwidth=200                 "let the linewidth is 200
+"set mouse=a                      let the mouse can be use in GUI:help
+"set title                        display the title in GUI
 
 
-"Display Settings
-syntax enable                           "开启默认的语法高亮
-syntax on                               "有语法高亮配色时,可以替换默认配色
-set t_Co=256                            "对于有些主题开启256色支持
+"***************************************Display Settings***********************************************************
 
-set number                              "显示行号
-set numberwidth=4                       "设置行号宽度
-set cursorcolumn                        "高亮当前行
-set cursorline                          "高亮当前列
-set encoding=utf-8                      "设置字符编码为UTF-8
-set expandtab                           "用空格代替Tab
-set shiftwidth=4                        "默认缩进为4空格,具体文件使用自动命令
-set smarttab                            "插入的Tab使用shiftwidth的宽度
-set tabstop=4                           "Tab默认4个空格,具体文件使用自动命令
-set showcmd                             "显示输入的命令
-set showmode                            "显示Vim当前的模式
-set showmatch                           "高亮配对的括号
+set number                        "set line number
+set numberwidth=4                 "set the line numberwidth=4
+set cursorcolumn                  "highlight the current column
+set cursorline                    "highlight the current line 
+set encoding=utf-8                "set the encoding UTF-8
+set expandtab                     "use <space> to replace <tab> It's very useful for filetype=asm
+set nowrap                        "prohibit wrap the line
+set shiftround
+set shiftwidth=4                 "default shift indent=4
+set smarttab                     "let tabwidth = shiftwidth
+set showcmd                      "display the command you're typing
+set showmode                     "display the Vim-mode currently
+set showmatch                    "highlight the brackets 
+set matchtime=3                  "set the jump time is 0.3
 
+
+"***************************************Mapping-Setting***********************************************************
+
+" use <leader>s to save you file,quit you file when you in insert-mode
+inoremap <leader>wq <esc>:wq<cr>
+inoremap <leader>q  <esc>:q<cr>
+inoremap <leader>w  <esc>:w<cr>
+
+" change and loading the vimrc conviently
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" use <j-k> replace <esc> in insert-mode
+inoremap jk <esc>
+
+" use abbrevation to set your blog,e-mail and (http://www.github.com/evil-crow when your insert text
+iabbrev blog (http://evil-crow.github.io)
+iabbrev @@ Evilcrow486@gmail.com
+iabbrev github (http://www.github.com/evil-crow
+
+" modify the wrong touch of the Caplocks/Shift
+cabbrev q q!
+cabbrev Wq wq
+cabbrev W w
+cabbrev Q q
+
+" the stronger H and L
+nnoremap H 0
+nnoremap L $
+
+" use <tab> to indent the text when you in visual-mode
+nnoremap <tab> V>
+nnoremap <s-tab> V<
+vnoremap <tab> >
+vnoremap <s-tab> <
+
+" use <leader>+number to switch you tab 
+inoremap <leader>n   <esc>:tabn<cr>
+inoremap <leader>p   <esc>:tabp<cr>
+inoremap <leader>new <esc>:tabnew<cr>
+nnoremap <leader>n   :tabn<cr>
+nnoremap <leader>p   :tabp<cr>
+nnoremap <leader>new :tabnew<cr>
+
+"***************************************Indent Setting***********************************************************
+
+set foldmethod=indent
