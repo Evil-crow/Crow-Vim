@@ -26,6 +26,9 @@ syntax on                         "open the syntax switch
 set showtabline=2                 "always show the tab 
 
 set t_Co=256                      "provide 256 colors support for some colorscheme
+let g:solarized_termcolors=256
+" set background=dark
+colorscheme solarized
 set noerrorbells                  "Let Vim do not DiDiDi anymore
 set novisualbell                  "Let vim be quiet in visual mode
 set history=500                   "set Vim's history 500
@@ -59,7 +62,7 @@ set matchtime=3                   "set the jump time is 0.3
 
 " use <leader>s to save you file,quit you file when you in insert-mode
 inoremap <leader>wq <esc>:wq<cr>
-inoremap <leader>q  <esc>:q<cr>
+inoremap <leader>q  <esc>:q!<cr>
 inoremap <leader>w  <esc>:w<cr>
 
 " change and loading the vimrc conviently
@@ -297,10 +300,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'SuperTab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'ervandew/eclim'
+Plugin 'Yggdroot/indentLine'
 "Plugin 'tpope/vim-fugitive'
 "Plugin 'git://git.wincent.com/command-t.git'
 "Plugin 'file:///home/gmarik/path/to/plugin'
@@ -338,8 +340,6 @@ let g:ale_set_highlights = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
 let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
@@ -365,10 +365,11 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 "YouCompleteMe
-let g:ycm_key_list_select_completion = ['<c-n>', '<c-x>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<c-c>']
+" let g:ycm_key_list_select_completion = ['<c-n>', '<c-x>']
+" let g:ycm_key_list_previous_completion = ['<c-p>', '<c-c>']
 let g:ycm_server_python_interpreter='/usr/bin/python'
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3' 
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1 
 let g:ycm_min_num_of_chars_for_completion=2 
@@ -379,7 +380,11 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
 "Ultisnips Seting
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-x>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+"IndentLine Setting
+let g:indentLine_char = "┆"  
+let g:indentLine_enabled = 1  
+let g:autopep8_disable_show_diff=1
