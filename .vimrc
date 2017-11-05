@@ -23,6 +23,7 @@ filetype plugin on                "auto loading the ftplugin by filetype
 filetype indent on                "auto loading the indent by filetype
 syntax enable                     "open the default code highlight
 syntax on                         "open the syntax switch
+set completeopt=longest,menu
 set showtabline=2                 "always show the tab 
 
 set t_Co=256                      "provide 256 colors support for some colorscheme
@@ -138,7 +139,7 @@ function NewFile( )
         call append(1,"# -\"- coding: utf-8 -\"-")
         call append(2,"# @filename:" . expand("%"))
         call append(3,"# @date: " . strftime("%x %T"))
-        call append(4,"# @author Your Name (you@example.org)")
+        call append(4,"# @author: Your Name (you@example.org)")
         call append(5,"# @description:")
         call append(6,"")
         call append(7,"")
@@ -148,7 +149,7 @@ function NewFile( )
         call setline(2,"# encoding: utf-8")
         call setline(3,"# @filename:" . expand("%"))
         call setline(4,"# @date: " . strftime("%x %T"))
-        call setline(5,"# @author Your Name (you@example.org)")
+        call setline(5,"# @author: Your Name (you@example.org)")
         call setline(6,"# @description:")
         call setline(7,"")
         call setline(8,"")
@@ -158,7 +159,7 @@ function NewFile( )
         call append(1,"# -\"- coding: utf-8 -\"-")
         call append(2,"# @filename:" . expand("%"))
         call append(3,"# @date: " . strftime("%x %T"))
-        call append(4,"# @author Your Name (you@example.org)")
+        call append(4,"# @author: Your Name (you@example.org)")
         call append(5,"# @description:")
         call append(6,"")
         call append(7,"")
@@ -183,7 +184,7 @@ function NewFile( )
         call setline(1,"@charset \"UTF-8\";")
         call append(1,"/**")
         call append(2," *")
-        call append(3," * @author Your Name (you@example.org)")
+        call append(3," * @author: Your Name (you@example.org)")
         call append(4," * @date   " . strftime("%x %T"))
         call append(5," * @version $Id$")
         call append(6," */")
@@ -193,7 +194,7 @@ function NewFile( )
     if &filetype == 'javascript'
         call setline(1,"/**")
         call append(1," *")
-        call append(2," * @authors Your Name (you@example.org)")
+        call append(2," * @author: Your Name (you@example.org)")
         call append(3," * @date    " . strftime("%x %T"))
         call append(4," * @version $Id$")
         call append(5," */")
@@ -204,7 +205,7 @@ function NewFile( )
         call setline(1,"<?php")
         call append(1,"/**")
         call append(2," *")
-        call append(3," * @authors Your Name (you@example.org)")
+        call append(3," * @author: Your Name (you@example.org)")
         call append(4," * @date    " . strftime("%x %T"))
         call append(5," * @version $Id$")
         call append(6," */")
@@ -231,7 +232,7 @@ function NewFile( )
         call setline(1,"/*")
         call append(1," *")
         call append(2," * @filename:    " . expand("%"))
-        call append(3," * @authors:     Your Name (you@example.org)")
+        call append(3," * @author:     Your Name (you@example.org)")
         call append(4," * @date:        " . strftime("%x %T"))
         call append(5," * @description:")
         call append(6," */")
@@ -268,17 +269,10 @@ function Indent_file( )
     if expand("%:e") == 'h'
         exec "normal 3G"
     endif
-    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'python' || &filetype == 'ruby' || &filetype == 'javascript' || &filetype == 'cpp' || &filetype == 'java'
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'python' || &filetype == 'ruby' || &filetype == 'javascript' || &filetype == 'cpp' || &filetype == 'java' || &filetype == 'sh'
         exec "normal G"
     endif
 endfunction
-
-"}}}
-
-"""""""""""""""""""""""""""""""""""""""""Complete Setting"""""""""""""""""""""""""""""""""""""""""""""""""{{{
- set completeopt=longest,menu
- autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
 
 "}}}
 
@@ -286,7 +280,6 @@ endfunction
 set nocompatible              " be iMproved, required
 "filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -303,17 +296,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/indentLine'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'git://git.wincent.com/command-t.git'
-"Plugin 'file:///home/gmarik/path/to/plugin'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 "}}}
 
-""""Plugin Setting{{{
+""""Plugin Settizang{{{
 
 "NERDTree Setting
 autocmd StdinReadPre * let s:std_in=1
@@ -365,11 +354,25 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 "YouCompleteMe
-" let g:ycm_key_list_select_completion = ['<c-n>', '<c-x>']
-" let g:ycm_key_list_previous_completion = ['<c-p>', '<c-c>']
 let g:ycm_server_python_interpreter='/usr/bin/python'
-let g:ycm_python_binary_path = '/usr/bin/python3' 
-let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
+if expand("%:e") == 'c'
+    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_c_conf.py'
+endif
+if expand("%:e") == 'cpp'
+    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
+endif
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.',' '],
+  \   'cpp,objcpp' : ['->', '.', '::',' '],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::',' '],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.',' '],
+  \   'ruby' : ['.', '::',' '],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
 let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1 
 let g:ycm_min_num_of_chars_for_completion=2 
