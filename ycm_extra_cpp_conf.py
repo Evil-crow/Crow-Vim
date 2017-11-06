@@ -53,30 +53,32 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-isystem',
-'../BoostParts',
+#  '-isystem',
+#  '../BoostParts',
 '-isystem',
 get_python_inc(),
-'-isystem',
-'../llvm/include',
-'-isystem',
-'../llvm/tools/clang/include',
+#  '-isystem',
+#  '../llvm/include',
+#  '-isystem',
+#  '../llvm/tools/clang/include',
 '-I',
 '.',
 '-I',
 './ClangCompleter',
-'-isystem',
-'./tests/gmock/gtest',
-'-isystem',
-'./tests/gmock/gtest/include',
-'-isystem',
-'./tests/gmock',
-'-isystem',
-'./tests/gmock/include',
-'-isystem',
-'./benchmarks/benchmark/include',
+#  '-isystem',
+#  './tests/gmock/gtest',
+#  '-isystem',
+#  './tests/gmock/gtest/include',
+#  '-isystem',
+#  './tests/gmock',
+#  '-isystem',
+#  './tests/gmock/include',
+#  '-isystem',
+#  './benchmarks/benchmark/include',
 '-isystem',
 '/usr/include'
+'-isystem',
+'/usr/include/bits',
 '-isystem',
 '/usr/include/c++/6.4.1',
 '-isystem',
@@ -154,10 +156,10 @@ def FlagsForFile( filename, **kwargs ):
   # NOTE: This is just for YouCompleteMe; it's highly likely that your project
   # does NOT need to remove the stdlib flag. DO NOT USE THIS IN YOUR
   # ycm_extra_conf IF YOU'RE NOT 100% SURE YOU NEED IT.
-  try:
-    final_flags.remove( '-stdlib=libc++' )
-  except ValueError:
-    pass
+  #  try:
+  #    final_flags.remove( '-stdlib=libc++' )
+  #  except ValueError:
+  #    pass
 
   return {
     'flags': final_flags,
