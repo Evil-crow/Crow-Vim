@@ -6,7 +6,7 @@
 "
 " This is my own .vimrc.
 " I have used many vimrc before,
-" Now,I decided to write my own vimrc for my Vim
+" Now,I decided to write my own vimrc for my Vimrc
 " Well, if you like it.
 " Please fork and star! Thank you very much!
 " 
@@ -15,9 +15,8 @@
 " Last ,dedicate this vimrc for XiyouLinuxGroup
 " Thanks for you very much!
 "
-""""""""""""""""""""""""""""""""""""""""General Settings""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+""""""""""""""""""""""""""""""""""""""""General Settings""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let mapleader = ","               "set up the mapleader
 filetype on                       "detect the different filetype
 filetype plugin on                "auto loading the ftplugin by filetype
 filetype indent on                "auto loading the indent by filetype
@@ -28,7 +27,8 @@ set showtabline=2                 "always show the tab
 
 set t_Co=256                      "provide 256 colors support for some colorscheme
 set background=dark
-colorscheme gruvbox 
+" colorscheme gruvbox
+colorscheme molokai
 set noerrorbells                  "Let Vim do not DiDiDi anymore
 set novisualbell                  "Let vim be quiet in visual mode
 set history=500                   "set Vim's history 500
@@ -37,9 +37,8 @@ set shortmess=atI                 "do not display the Uganda message
 set textwidth=200                 "let the linewidth is 200
 "set mouse=a                      let the mouse can be use in GUI:help
 "set title                        display the title in GUI
-"}}}
 
-""""""""""""""""""""""""""""""""""""""""Display Settings"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+""""""""""""""""""""""""""""""""""""""""Display Settings"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set number                        "set line number
 set numberwidth=4                 "set the line numberwidth=4
@@ -56,32 +55,17 @@ set showcmd                       "display the command you're typing
 set showmode                      "display the Vim-mode currently
 set showmatch                     "highlight the brackets 
 set matchtime=3                   "set the jump time is 0.3
-"}}}
 
-""""""""""""""""""""""""""""""""""""""""Mapping-Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
 
-" use <leader>s to save you file,quit you file when you in insert-mode
-inoremap <leader>wq <esc>:wq<cr>
-inoremap <leader>q  <esc>:q!<cr>
-inoremap <leader>w  <esc>:w<cr>
-
-" change and loading the vimrc conviently
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+""""""""""""""""""""""""""""""""""""""""Mapping-Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " use <j-k> replace <esc> in insert-mode
-inoremap jk <esc>
+" inoremap jk <esc>
 
 " use abbrevation to set your blog,e-mail and (http://www.github.com/evil-crow when your insert text
 iabbrev blog (http://evil-crow.github.io)
 iabbrev @@ Evilcrow486@gmail.com
 iabbrev github (http://www.github.com/evil-crow)
-
-" modify the wrong touch of the Caplocks/Shift
-cabbrev q q!
-cabbrev Wq wq
-cabbrev W w
-cabbrev Q q
 
 " the stronger H and L
 nnoremap H 0
@@ -89,21 +73,11 @@ nnoremap L $
 
 " use <tab> to indent the text when you in visual-mode
 nnoremap <tab> V>
-nnoremap zs-tab> V<
+nnoremap <s-tab> V<
 vnoremap <tab> >
 vnoremap <s-tab> <
 
-" use <leader>+number to switch you tab 
-inoremap <leader>n   <esc>:tabn<cr>
-inoremap <leader>p   <esc>:tabp<cr>
-inoremap <leader>new <esc>:tabnew<cr>
-nnoremap <leader>n   :tabn<cr>
-nnoremap <leader>p   :tabp<cr>
-nnoremap <leader>new :tabnew<cr>
-
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""Indent Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+""""""""""""""""""""""""""""""""""""""""Indent Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set autoindent                                      "set auto indent
 set cindent                                         "set C/C++ indent
@@ -114,9 +88,8 @@ set foldignore=
 set nofoldenable                                    "open the file without fold
 autocmd FileType vim :set foldmethod=marker
 
-"}}}
 
-""""""""""""""""""""""""""""""""""""""""Autocmd Setting""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+""""""""""""""""""""""""""""""""""""""""Autocmd Setting""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Python is strict with indent
 autocmd FileType python set shiftwidth=4 tabstop=4 smarttab
@@ -126,9 +99,8 @@ autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab
 "You can't worry about not save the file
 autocmd FocusLost,CursorHoldI " :write
 
-"}}}
 
-"""""""""""""""""""""""""""""""""""""""""Newfile Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+"""""""""""""""""""""""""""""""""""""""""Newfile Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 autocmd BufNewFile *.c,*.cpp,*.java,*.rb,*.py,*.sh,*.h,*.html,*.css,*.js,*.php,*.xml :call NewFile( )
 
@@ -232,22 +204,22 @@ function NewFile( )
         call append(4," * @description:")
         call append(5," */")
         call append(6,"")
-        call append(7,"")
     endif
     if &filetype == 'c'
-        call append(7,"#include<stdio.h>")
-        call append(8,"#include<stdlib.h>")
+        call append(7,"#include <stdio.h>")
+        call append(8,"#include <stdlib.h>")
+        call append(9,"")
     endif
     if &filetype == 'cpp'
-        call append(7,"#include<iostream>")
+        call append(7,"#include <iostream>")
         call append(8,"using namespace std;")
+        call append(9,"")
     endif
     if &filetype == 'java'
     endif
 endfunction
 
 autocmd BufNewFile * :call Indent_file( )    
-
 function Indent_file( )
     if &filetype == 'html'
         exec "normal 6G7l"
@@ -266,9 +238,8 @@ function Indent_file( )
     endif
 endfunction
 
-"}}}
 
-"""""""""""""""""""""""""""""""""""""""""Vundle Setting"""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+"""""""""""""""""""""""""""""""""""""""""Vundle Setting"""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 "filetype off                  " required
 
@@ -277,24 +248,19 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'                        "Plugin NERDtree
-Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'w0rp/ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'Yggdroot/indentLine'
-Plugin 'morhetz/gruvbox'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"}}}
 
-""""Plugin Settizang{{{
+""""Plugin Settizang
 
 "NERDTree Setting
 autocmd StdinReadPre * let s:std_in=1
@@ -302,35 +268,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 noremap <F2> :NERDTreeToggle<cr>
 
-"CtrlP Setting
-let g:ctrlp_map = '<leader>cp'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'rc'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:crtlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-
 "Tagbar Setting
 noremap <F4> :TagbarToggle<cr>
 
-"Ale Setting
-let g:airline#extensions#ale#enabled = 1
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 1
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 1
-" let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-autocmd bufenter * if (winnr("$") == 1 && expand("%") == "" && argc() != 0 ) | q | endif
 
 "Airline
 let g:airline_section_b = '%{strftime("%x")}'
@@ -348,16 +288,17 @@ let g:NERDTrimTrailingWhitespace = 1
 "YouCompleteMe
 let g:ycm_server_python_interpreter='/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
-
-if expand("%:e") == 'c'
-    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_c_conf.py'
+ 
+if expand("%:e") == 'c' 
+    let g:ycm_global_ycm_extra_conf='/usr/src/kernels/4.13.8-100.fc25.x86_64/.ycm_extra_conf.py'
 endif
 if expand("%:e") == 'cpp'
     let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
 endif
+
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'cpp,objcpp' : ['->', '.', '::','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
   \   'perl' : ['->'],
   \   'php' : ['->', '::',' '],
   \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.',' '],
@@ -370,7 +311,7 @@ let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_min_num_of_chars_for_completion=2 
 let g:ycm_cache_omnifunc=0  
 let g:ycm_seed_identifiers_with_syntax=1    
-let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_comments = 0
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
