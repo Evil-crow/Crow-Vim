@@ -83,30 +83,6 @@ function deal_something(  )
     mv ~/.vim/ycm_extra_cpp_conf.py  ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf 
 }
 
-# Advertise for myself
-function print_information(  )
-{
-    echo ""
-    echo "Well,thanks for you choose Crow-Vim,thank you very much"
-    echo "I have devote my much time for this .vimrc"
-    echo "I'm glad that you like it"
-    echo "and if you have any suggestion foe this vimrc"
-    echo " Well, please tell me by issue,thank you very much"
-    echo "Have a good time with Crow-Vim"
-    echo ""
-}
-
-#Something at last
-function about_ycmd(  )
-{
-    echo ""
-    echo "If you want to use the ycmd completely"
-    echo "Well ,you must customd it by yourself"
-    echo "Also ,you can call me ,and I'll help you "
-    echo "my e-mail is : evilcrow486@gmail.com"
-    echo "my github evil-crow,"
-    echo ""
-}
 function install(  )
 {
     get_OS
@@ -114,9 +90,12 @@ function install(  )
     prepare_vim
     complier_ycm
     deal_something 
-    print_information 
-    about_ycmd 
 }
 
 install 
 
+cd ~/.vim
+
+vim article -c "PluginInstall" -c "q" -c "q"
+
+rm article
