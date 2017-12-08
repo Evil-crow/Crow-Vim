@@ -62,13 +62,13 @@ function prepare_vim(  )
 #This function is used to complie YouCompleteMe
 function complier_ycm(  )
 {
-    select CHOICE in C\# Go JavaScript C/C++ Rust Exit
+    select CHOICE in C\# Go JavaScript Cfamily Rust Exit
     do
         case $CHOICE in
         "C#") echo "C#" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --cs-completer ;;
         "Go") echo "Go" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --go-completer ;;
         "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --js-completer ;;
-        "C/C++") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer --system-libclang ;; 
+        "Cfamily") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer --system-libclang ;; 
         "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --rust-completer ;;
         "Exit") echo "Next Step" ; break ;;
         *) echo "Unknow" ;;
