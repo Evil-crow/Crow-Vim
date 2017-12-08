@@ -31,13 +31,13 @@ function get_OS(  )
 function prepare_env(  )
 {
     if [ "$OS" = "Fedora" ];then
-        sudo dnf install automake gcc gcc-c++ kernel-devel cmake
+        sudo dnf install automake gcc gcc-c++ kernel-devel cmake clang 
         sudo dnf install python-devel python3-devel
     elif [ "$OS" = "Debian" ];then
-        sudo apt-get install build-essential cmake
+        sudo apt-get install build-essential cmake clang 
         sudo apt-get install python-dev python3-dev
     elif [ "$OS" = "CentOs" ];then
-        sudo yum install automake gcc gcc-c++ kernel-devel cmake
+        sudo yum install automake gcc gcc-c++ kernel-devel cmake clang 
         sudo yum install python-devel python3-devel    
     else
         echo "Error ** :This system haven't been supported!"
@@ -62,15 +62,14 @@ function prepare_vim(  )
 #This function is used to complie YouCompleteMe
 function complier_ycm(  )
 {
-    language="C# Go JavaScript C/C++ Rust Exit"
-    select CHOICE in ${langage}
+    select CHOICE in C\# Go JavaScript C/C++ Rust Exit
     do
         case $CHOICE in
-        "C#") echo "C#" ; python ~/.vim/bundle/YouCompleteMe/install.py --cs-completer ;;
-        "Go") echo "Go" ; python ~/.vim/bundle/YouCompleteMe/install.py --go-completer ;;
-        "JavaScript") echo "JavaScript" ; python ~/.vim/bundle/YouCompleteMe/install.py --js-completer ;;
-        "C/C++") echo "C/C++" ; python ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --system-libclang ;; 
-        "Rust") echo "Rust" ; python ~/.vim/bundle/YouCompleteMe/install.py --rust-completer ;;
+        "C#") echo "C#" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --cs-completer ;;
+        "Go") echo "Go" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --go-completer ;;
+        "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --js-completer ;;
+        "C/C++") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer --system-libclang ;; 
+        "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --rust-completer ;;
         "Exit") echo "Next Step" ; break ;;
         *) echo "Unknow" ;;
         esac
@@ -120,3 +119,4 @@ function install(  )
 }
 
 install 
+
