@@ -36,9 +36,9 @@ function prepare_env(  )
     elif [ "$OS" = "Debian" ];then
         sudo apt-get install build-essential cmake
         sudo apt-get install python-dev python3-dev
-    elif [ "$OS" = "RedHat" ];then
-        sudo ycm install automake gcc gcc-c++ kernel-devel cmake
-        sudo ycm install python-devel python3-devel    
+    elif [ "$OS" = "CentOs" ];then
+        sudo yum install automake gcc gcc-c++ kernel-devel cmake
+        sudo yum install python-devel python3-devel    
     else
         echo "Error ** :This system haven't been supported!"
     fi 
@@ -47,7 +47,7 @@ function prepare_env(  )
 #Prepare for Vim
 function prepare_vim(  )
 {
-    mkdir ~/.old_vim
+    mkdir ~/.old_vim 
     mv ~/.vim* ~/.old_vim             # Clean all the vim you had used
     mv ~/Crow-Vim ~/.vim
     mv ~/.vim/vimrc ~/.vimrc 
@@ -62,7 +62,7 @@ function prepare_vim(  )
 #This function is used to complie YouCompleteMe
 function complier_ycm(  )
 {
-    language="C# Go JavaScript C/C++ Rust"
+    language="C# Go JavaScript C/C++ Rust Exit"
     select CHOICE in ${langage}
     do
         case $CHOICE in
@@ -71,6 +71,7 @@ function complier_ycm(  )
         "JavaScript") echo "JavaScript" ; python ~/.vim/bundle/YouCompleteMe/install.py --js-completer ;;
         "C/C++") echo "C/C++" ; python ~/.vim/bundle/YouCompleteMe/install.py --clang-completer --system-libclang ;; 
         "Rust") echo "Rust" ; python ~/.vim/bundle/YouCompleteMe/install.py --rust-completer ;;
+        "Exit") echo "Next Step" ; break ;;
         *) echo "Unknow" ;;
         esac
     done
@@ -86,22 +87,26 @@ function deal_something(  )
 # Advertise for myself
 function print_information(  )
 {
+    echo ""
     echo "Well,thanks for you choose Crow-Vim,thank you very much"
     echo "I have devote my much time for this .vimrc"
     echo "I'm glad that you like it"
     echo "and if you have any suggestion foe this vimrc"
     echo " Well, please tell me by issue,thank you very much"
     echo "Have a good time with Crow-Vim"
+    echo ""
 }
 
 #Something at last
 function about_ycmd(  )
 {
+    echo ""
     echo "If you want to use the ycmd completely"
     echo "Well ,you must customd it by yourself"
     echo "Also ,you can call me ,and I'll help you "
     echo "my e-mail is : evilcrow486@gmail.com"
     echo "my github evil-crow,"
+    echo ""
 }
 function install(  )
 {
