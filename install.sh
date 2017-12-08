@@ -51,6 +51,12 @@ function prepare_vim(  )
     mv ~/.vim* ~/.old_vim             # Clean all the vim you had used
     mv ~/Crow-Vim ~/.vim
     mv ~/.vim/vimrc ~/.vimrc 
+    cd /.vim/bundle/
+    git clone git@github.com:VundleVim/Vundle.vim.git
+    cd ~/.vim/bundle
+    git clone git@github.com:Valloric/YouCompleteMe.git
+    cd ~/.vim/bundle/YouCompleteMe
+    git submodule update --init --recursive
 }
 
 #This function is used to complie YouCompleteMe
