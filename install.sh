@@ -67,9 +67,9 @@ function complier_ycm(  )
         case $CHOICE in
         "C#") echo "C#" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --cs-completer ;;
         "Go") echo "Go" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --go-completer ;;
-        "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --js-completer ;;
-        "Cfamily") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer --system-libclang ;; 
-        "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ./install.py --rust-completer ;;
+        "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --js-completer ;;
+        "Cfamily") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --clang-completer --system-libclang ;; 
+        "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --rust-completer ;;
         "Exit") echo "Next Step" ; break ;;
         *) echo "Unknow" ;;
         esac
