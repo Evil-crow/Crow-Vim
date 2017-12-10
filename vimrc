@@ -16,7 +16,7 @@
 " Thanks for you very much!
 "
 """"""""""""""""""""""""""""""""""""""""General Settings""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+let mapleader=","
 filetype on                       "detect the different filetype
 filetype plugin on                "auto loading the ftplugin by filetype
 filetype indent on                "auto loading the indent by filetype
