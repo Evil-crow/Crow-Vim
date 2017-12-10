@@ -65,12 +65,11 @@ function complier_ycm(  )
     select CHOICE in C\# Go JavaScript Cfamily Rust Exit
     do
         case $CHOICE in
-        "C#") echo "C#" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --cs-completer ;;
-        "Go") echo "Go" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --go-completer ;;
-        "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --js-completer ;;
-        "Cfamily") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --clang-completer --system-libclang ;; 
-        "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --rust-completer ;;
-        "Exit") echo "Next Step" ; break ;;
+        "C#") echo "C#" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --cs-completer ; echo "Next Step" ; break ;;
+        "Go") echo "Go" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --go-completer ; echo "Next Step" ; break ;;
+        "JavaScript") echo "JavaScript" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --js-completer ; echo "Next Step" ; break ;;
+        "Cfamily") echo "C/C++" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --clang-completer ; echo "Next Step" ; break ;; 
+        "Rust") echo "Rust" ; cd ~/.vim/bundle/YouCompleteMe ; ./install.py --rust-completer ; echo "Next Step" ; break ;;
         *) echo "Unknow" ;;
         esac
     done

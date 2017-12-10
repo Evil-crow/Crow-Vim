@@ -80,11 +80,6 @@ flags = [
 '-isystem',
 '/usr/include/bits',
 '-isystem',
-'/usr/src/kernels/4.13.8-100.fc25.x86_64/include',
-'-isystem',
-'/usr/src/kernels/4.13.8-100.fc25.x86_64/include/generated/autoconf.h'
-'-isystem',
-'/usr/include/',
 ]
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
 # which is required for compiling the standard library, and to 'c++11' for older

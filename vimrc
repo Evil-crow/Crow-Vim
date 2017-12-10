@@ -290,7 +290,7 @@ let g:ycm_server_python_interpreter='/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
  
 if expand("%:e") == 'c' 
-    let g:ycm_global_ycm_extra_conf='/usr/src/kernels/4.13.8-100.fc25.x86_64/.ycm_extra_conf.py'
+    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_c_conf.py'
 endif
 if expand("%:e") == 'cpp'
     let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
