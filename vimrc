@@ -24,7 +24,8 @@ syntax enable                     "open the default code highlight
 syntax on                         "open the syntax switch
 set completeopt=longest,menu
 set showtabline=2                 "always show the tab 
-
+set nocompatible
+set backspace=indent,eol,start
 set t_Co=256                      "provide 256 colors support for some colorscheme
 set background=dark
 " colorscheme gruvbox
