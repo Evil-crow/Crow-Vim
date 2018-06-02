@@ -24,12 +24,12 @@ syntax enable                     "open the default code highlight
 syntax on                         "open the syntax switch
 set completeopt=longest,menu
 set showtabline=2                 "always show the tab 
-set nocompatible
-set backspace=indent,eol,start
+
 set t_Co=256                      "provide 256 colors support for some colorscheme
 set background=dark
 " colorscheme gruvbox
 colorscheme molokai
+" colorscheme ron
 set noerrorbells                  "Let Vim do not DiDiDi anymore
 set novisualbell                  "Let vim be quiet in visual mode
 set history=500                   "set Vim's history 500
@@ -61,7 +61,7 @@ set matchtime=3                   "set the jump time is 0.3
 """"""""""""""""""""""""""""""""""""""""Mapping-Setting"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " use <j-k> replace <esc> in insert-mode
-" inoremap jk <esc>
+inoremap jk <esc>
 
 " use abbrevation to set your blog,e-mail and (http://www.github.com/evil-crow when your insert text
 iabbrev blog (http://evil-crow.github.io)
@@ -192,8 +192,8 @@ function NewFile( )
         call append(3,"</root>")
     endif
     if expand("%:e") == 'h'
-        call setline(1,"#ifndef " . toupper(expand("%:r") . "_h"))
-        call append(1,"#define " . toupper(expand("%:r") . "_h"))
+        call setline(1,"#ifndef " . "_" . toupper(expand("%:r") . "_h"))
+        call append(1,"#define " . "_" . toupper(expand("%:r") . "_h"))
         call append(2,"")
         call append(3,"#endif")
     endif
@@ -212,9 +212,7 @@ function NewFile( )
         call append(9,"")
     endif
     if &filetype == 'cpp'
-        call append(7,"#include <iostream>")
-        call append(8,"using namespace std;")
-        call append(9,"")
+        call append(7,"")
     endif
     if &filetype == 'java'
     endif
@@ -233,6 +231,7 @@ function Indent_file( )
     endif
     if expand("%:e") == 'h'
         exec "normal gg"
+        exec "normal k"
     endif
     if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'python' || &filetype == 'ruby' || &filetype == 'javascript' || &filetype == 'cpp' || &filetype == 'java' || &filetype == 'sh'
         exec "normal G"
@@ -257,6 +256,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'Yggdroot/indentLine'
+Plugin 'vim-scripts/Conque-GDB'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -291,9 +291,15 @@ let g:ycm_server_python_interpreter='/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
  
 if expand("%:e") == 'c' 
-    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_c_conf.py'
+    let g:ycm_global_ycm_extra_conf='/usr/src/kernels/4.14.16-300.fc27.x86_64/.ycm_extra_conf.py'
 endif
 if expand("%:e") == 'cpp'
+    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
+endif
+if expand("%:e") == 'hpp'
+    let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
+endif
+if expand("%:e") == 'cxx'
     let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_cpp_conf.py'
 endif
 
@@ -325,3 +331,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:indentLine_char = "┆"  
 let g:indentLine_enabled = 1  
 let g:autopep8_disable_show_diff=1
+
+"Conque GDB
+let g:ConqueGdb_SrcSplit = 'above'
+let g:ConqueGdb_SaveHistory = 1
+let g:ConqueGdb_Leader = ','
+let g:ConqueTerm_Color = 1
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_StartMessages = 1
+
+nnoremap <Leader>cgdb :ConqueGdb a.out<cr><esc><C-w><C-w>
+nnoremap <silent> <Leader>Y :ConqueGdbCommand y<CR>
+nnoremap <silent> <Leader>N :ConqueGdbCommand n<CR>
