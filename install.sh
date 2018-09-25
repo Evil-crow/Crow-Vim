@@ -14,7 +14,7 @@ function get_OS(  )
     if [ -n "$packmanager" ];then
         OS="RedHat"
     else
-        OS="Debian"
+        OS="Other"
     fi
     if [ "$OS" = "RedHat" ];then 
         local packmanager=`which dnf`
@@ -23,7 +23,15 @@ function get_OS(  )
         else
             OS="CentOs"
         fi
-    fi 
+    fi
+    if [ "$OS" = "Other" ];then
+        local packmanager=`which pacman`
+        if [ -n "$packmanager" ]; then
+            OS="ArchLinux"
+        else
+            OS="Debian"
+        fi
+    fi
     echo $OS 
 }
 
@@ -39,6 +47,8 @@ function prepare_env(  )
     elif [ "$OS" = "CentOs" ];then
         sudo yum install automake gcc gcc-c++ kernel-devel cmake clang 
         sudo yum install python-devel python3-devel    
+    elif [ "$OS" = "ArchLinux"];then
+        sudo pacman -S automake gcc cmake clang python3
     else
         echo "Error ** :This system haven't been supported!"
     fi 
